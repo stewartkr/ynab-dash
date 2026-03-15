@@ -1,7 +1,7 @@
 <template>
     <div id="page-container">
         <BudgetSelectorPage 
-            v-if="!isBudgetSelected" 
+            v-if="!isBudgetSelected()" 
             :selectBudget
             :budgets
         />

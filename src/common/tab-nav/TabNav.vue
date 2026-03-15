@@ -1,7 +1,7 @@
 <template>
-    <div id="tab-nav">
+    <nav id="tab-nav" class="navbar">
         <div v-for="tab in tabs" :key="tab.name">
-            <button 
+            <button
                 @click="selectTab(tab.name)" 
                 class="tab-nav_button"
                 :style="{ 'font-weight': isSelectedTab(tab.name) ? 'bold' : 'normal' }"
@@ -9,7 +9,7 @@
                 {{ tab.name }}
             </button>
         </div>
-    </div>
+    </nav>
 </template>
 
 <script>

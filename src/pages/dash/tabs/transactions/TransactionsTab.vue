@@ -1,5 +1,5 @@
 <template>
-  <div id="dash-page_transactions-tab" class="container">
+  <div id="dash-page_transactions-tab">
     <h5>Transactions Tab</h5>
     <table class="table">
     <thead>
