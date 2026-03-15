@@ -1,8 +1,7 @@
 <template>
-  <div id="app">
-    <Nav />
+  <div id="ynab-dash-app">
+    <Header />
     <div class="container">
-
       <!-- Display a loading message if loading -->
       <h1 v-if="loading" class="display-4">Loading...</h1>
 
@@ -39,18 +38,16 @@
           </div>
         </form>
 
-        <!-- Otherwise if we have a token, show the budget select -->
-        <Budgets v-else-if="!budgetId" :budgets="budgets" :selectBudget="selectBudget" />
-
-        <!-- If a budget has been selected, display transactions from that budget -->
         <div v-else>
-          <Transactions :transactions="transactions" />
-          <button class="btn btn-info" @click="budgetId = null">&lt; Select Another Budget</button>
+          <PageContainer 
+            :isBudgetSelected="isBudgetSelected()" 
+            :selectBudget="selectBudget" 
+            :budgets="this.budgets"
+            :transactions="this.transactions"
+          />
         </div>
-
       </div>
-
-      <Footer />
+      <Footer :resetBudget="resetBudget" />
     </div>
   </div>
 </template>
@@ -63,10 +60,9 @@ import * as ynab from 'ynab';
 import config from './config.json';
 
 // Import Our Components to Compose Our App
-import Nav from './components/Nav.vue';
 import Footer from './components/Footer.vue';
-import Budgets from './components/Budgets.vue';
-import Transactions from './components/Transactions.vue';
+import Header from './components/Header.vue';
+import PageContainer from './components/PageContainer.vue';
 
 export default {
   // The data to feed our templates
@@ -156,14 +152,19 @@ export default {
       sessionStorage.removeItem('ynab_access_token');
       this.ynab.token = null;
       this.error = null;
+    },
+    isBudgetSelected() {
+      return !!this.budgetId;
+    },
+    resetBudget() {
+      this.budgetId = null;
     }
   },
   // Specify which components we want to make available to our templates
   components: {
-    Nav,
+    Header,
     Footer,
-    Budgets,
-    Transactions
+    PageContainer
   }
 }
 </script>

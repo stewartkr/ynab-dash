@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h5>Transactions</h5>
+  <div id="dash-page_transactions-tab" class="container">
+    <h5>Transactions Tab</h5>
     <table class="table">
     <thead>
       <tr>

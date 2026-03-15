@@ -1,5 +1,5 @@
 <template>
-  <div class="budgets container">
+  <div id="budget-selector-page" class="budgets container">
     <h5>Select A Budget</h5>
     <div v-for="budget in budgets" class="row">
       <a class="col" href="#" @click="selectBudget(budget.id, $event)">
